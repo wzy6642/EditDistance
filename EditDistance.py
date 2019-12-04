@@ -6,6 +6,7 @@ Created on Tue Dec  3 14:50:44 2019
 """
 import numpy as np
 import editdistance
+import math
 
 
 """
@@ -21,11 +22,15 @@ return:
 def edit_distance(str1, str2):
     m, n = len(str1), len(str2)
     if m==0 and n!=0:
-        return len(str2)
-    elif m==0 and n!=0:
-        return len(str1)
+        return n, 1-n/max(m, n)
+    elif m!=0 and n==0:
+        return m, 1-m/max(m, n)
     elif m==0 and n==0:
-        return 0
+        try:
+            1-0/0
+        except ZeroDivisionError as z:
+            print("两个字符串不能同时为空")
+        return math.inf, math.inf
     else:
         d = np.zeros((n+1, m+1))
         d[0] = np.arange(m+1)
@@ -37,12 +42,12 @@ def edit_distance(str1, str2):
                 else:
                     temp = 1
                 d[i, j] = min(d[i-1, j]+1, d[i, j-1]+1, d[i-1, j-1]+temp)
-        return 1-d[n, m]/max(m, n)
+        return d[n, m], 1-d[n, m]/max(m, n)
         
         
 if __name__ == '__main__':
     str1 = '1010101010000101000010011001010101101'
     str2 = '101010111010101010111101010'
-    result = edit_distance(str1, str2)
+    dist, result = edit_distance(str1, str2)
     print('自己编写算法计算的相似性结果: %f' % result)
     print('利用模块计算的相似性结果: %f' % (1-editdistance.distance(str1, str2)/max(len(str1), len(str2))))
