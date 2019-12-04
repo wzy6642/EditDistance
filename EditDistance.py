@@ -17,6 +17,7 @@ params:
     str1: 字符串1
     str2：字符串2
 return:
+    两个字符串之间的编辑距离
     两个字符串的相似度计算结果
 """
 def edit_distance(str1, str2):
@@ -49,5 +50,6 @@ if __name__ == '__main__':
     str1 = '1010101010000101000010011001010101101'
     str2 = '101010111010101010111101010'
     dist, result = edit_distance(str1, str2)
-    print('自己编写算法计算的相似性结果: %f' % result)
-    print('利用模块计算的相似性结果: %f' % (1-editdistance.distance(str1, str2)/max(len(str1), len(str2))))
+    print('My Algorithm - Edit Distance: %d, Similarity: %f' % (dist, result))
+    dist = editdistance.distance(str1, str2)
+    print('Python Package - Edit Distance: %d, Similarity: %f' % (dist, 1-dist/max(len(str1), len(str2))))
