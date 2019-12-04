@@ -47,9 +47,9 @@ def edit_distance(str1, str2):
         
         
 if __name__ == '__main__':
-    str1 = '1010101010000101000010011001010101101'
-    str2 = '101010111010101010111101010'
+    str1 = 'dsadsadsa'
+    str2 = 'dasdsadasdasdad'
     dist, result = edit_distance(str1, str2)
-    print('My Algorithm - Edit Distance: %d, Similarity: %f' % (dist, result))
+    print('My Algorithm - Edit Distance: %.0f, Similarity: %f' % (dist, result))
     dist = editdistance.distance(str1, str2)
-    print('Python Package - Edit Distance: %d, Similarity: %f' % (dist, 1-dist/max(len(str1), len(str2))))
+    print('Python Package - Edit Distance: %.0f, Similarity: %f' % (dist, 1-dist/max(len(str1), len(str2))))
