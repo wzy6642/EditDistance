@@ -31,7 +31,7 @@ def edit_distance(str1, str2):
             1-0/0
         except ZeroDivisionError as z:
             print("两个字符串不能同时为空")
-        return math.inf, math.inf
+        return math.nan, math.nan
     else:
         d = np.zeros((n+1, m+1))
         d[0] = np.arange(m+1)
@@ -47,8 +47,8 @@ def edit_distance(str1, str2):
         
         
 if __name__ == '__main__':
-    str1 = 'dsadsadsa'
-    str2 = 'dasdsadasdasdad'
+    str1 = '1010101010000101000010011001010101101'
+    str2 = '101010111010101010111101010'
     dist, result = edit_distance(str1, str2)
     print('My Algorithm - Edit Distance: %.0f, Similarity: %f' % (dist, result))
     dist = editdistance.distance(str1, str2)
